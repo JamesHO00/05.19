@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.6.0.slim.js"
+      integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.ripples@0.6.3/dist/jquery.ripples.min.js"></script> -->
+    <style>
+      body,
+      .image-box,
+      .image-box__text,
+      .modals {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      body {
+        min-height: 100vh;
+        background-image: linear-gradient(rgba(0, 0, 0, 1) 1px, transparent 0),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.25) 1px, transparent 0),
+          linear-gradient(90deg, rgba(0, 0, 0, 1) 1px, transparent 0);
+        background-size: 50px 90px, 50px 90px, 100px 100px;
+      }
+      .image-box {
+        overflow: hidden;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .image-box img {
+        transition: transform 300ms;
+        min-width: 100%;
+        min-height: 100%;
+      }
+
+      .image-box:hover img {
+        transform: scale(1.2) rotateZ(2deg);
+      }
+
+      .image-box__text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(90, 23, 80, 0.5);
+        color: #eeffff;
+        transform: translateX(100%) rotateZ(90deg);
+        transition: transform 300ms;
+      }
+      .image-box:hover > .image-box__text {
+        transform: none;
+      }
+      .modals {
+        visibility: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all 300ms;
+        overflow: auto;
+      }
+      .modals.active {
+        visibility: visible;
+        opacity: 1;
+      }
+      .modals__mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+      }
+      .modals__container {
+        margin: 20px;
+        position: relative;
+        padding: 20px;
+        border-radius: 20px;
+        width: 60%;
+        background-color: #eeffff;
+      }
+      .modals__container img {
+        width: 100%;
+      }
+      .image-list {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .image-list > li {
+        flex: 1;
+        margin: 10px;
+        flex-basis: 220px;
+        min-width: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="image-list">
+      <li class="image-box">
+        <img src="https://picsum.photos/400/300" alt="photo" />
+        <section class="image-box__text">
+          <h2>HI!!!</h2>
+          <span>HELLO!!</span>
+        </section>
+      </li>
+      <li class="image-box">
+        <img src="https://picsum.photos/400/302" alt="photo" />
+        <section class="image-box__text">
+          <h2>HI!!!</h2>
+          <span>HELLO!!</span>
+        </section>
+      </li>
+      <li class="image-box">
+        <img src="https://picsum.photos/400/303" alt="photo" />
+        <section class="image-box__text">
+          <h2>HI!!!</h2>
+          <span>HELLO!!</span>
+        </section>
+      </li>
+      <li class="image-box">
+        <img src="https://picsum.photos/400/304" alt="photo" />
+        <section class="image-box__text">
+          <h2>HI!!!</h2>
+          <span>HELLO!!</span>
+        </section>
+      </li>
+      <li class="image-box">
+        <img src="https://picsum.photos/400/304" alt="photo" />
+        <section class="image-box__text">
+          <h2>HI!!!</h2>
+          <span>HELLO!!</span>
+        </section>
+      </li>
+      <li class="image-box">
+        <img src="https://picsum.photos/400/304" alt="photo" />
+        <section class="image-box__text">
+          <h2>HI!!!</h2>
+          <span>HELLO!!</span>
+        </section>
+      </li>
+    </ul>
+
+    <div class="modals">
+      <div class="modals__mask"></div>
+      <div class="modals__container">
+        <img src="" alt="photo" />
+        <h1>HI PIcture</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. A labore
+          quod temporibus aperiam architecto ea deserunt tempora facilis
+          ducimus, quo, obcaecati nostrum dolore iusto deleniti animi non,
+          laboriosam cumque dolor.
+        </p>
+      </div>
+    </div>
+    <script>
+      // $('body').ripples({
+      //   resolution: 512,
+      //   dropRadius: 20,
+      //   perturbance: 0.04,
+      // });
+      var imageBox = document.querySelectorAll('.image-box');
+      var modals = document.querySelector('.modals');
+      var modalsMask = document.querySelector('.modals__mask');
+      var modalCover = document.querySelector('.modals img');
+
+      imageBox.forEach(function (element, index) {
+        var coverSrc = element.querySelector('img').src;
+
+        element.addEventListener('click', function () {
+          modals.classList.add('active');
+          modalCover.src = coverSrc;
+        });
+
+        modalsMask.addEventListener('click', function () {
+          modals.classList.remove('active');
+        });
+      });
+    </script>
+  </body>
+</html>
